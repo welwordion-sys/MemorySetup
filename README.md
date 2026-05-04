@@ -51,13 +51,14 @@ Files live on your device. No internet dependency.
 ---
 
 ## Repository structure
-
+```
 session_loader.json          ← fetch this at session start
 chunks/
 meta.behaviour_personality.json   ← auto-loaded, defines Claude's behaviour
 [your chunks]
 index/
 [domain].[subtopic].json          ← lightweight indexes, fetched before chunk decisions
+```
 ---
 
 ## Getting started
