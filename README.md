@@ -97,3 +97,9 @@ Keep individual chunk files under 3KB (~3000 characters of JSON). Larger files c
 - This system was designed for use with Claude but the architecture is model-agnostic
 - The KB is only as useful as what you put in it — sparse chunks are fine, vague chunks are not
 - Version your loader file when making structural changes
+---
+
+## License
+
+MIT License — free to use, adapt, and redistribute. See LICENSE file for details.
+
