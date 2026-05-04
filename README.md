@@ -51,3 +51,49 @@ Files live on your device. No internet dependency.
 ---
 
 ## Repository structure
+
+session_loader.json          ← fetch this at session start
+chunks/
+meta.behaviour_personality.json   ← auto-loaded, defines Claude's behaviour
+[your chunks]
+index/
+[domain].[subtopic].json          ← lightweight indexes, fetched before chunk decisions
+---
+
+## Getting started
+
+1. Fork or copy this repository (or download files locally for standalone)
+2. Edit `session_loader.json` — replace all `YOUR_*` placeholders with your values
+3. Edit `chunks/meta.behaviour_personality.json` — review behaviour rules, adapt or remove as needed
+4. Add your session start instruction to Claude's user preferences (see template below)
+
+**User preferences template:**
+
+At session start, fetch [YOUR_SESSION_LOADER_URL] using web_fetch and acknowledge when loaded. Then follow the instructions inside the file.
+
+---
+
+## Adapting the behaviour rules
+
+`chunks/meta.behaviour_personality.json` contains communication and reasoning rules. These are recommendations based on one user's working style — not universal defaults.
+
+Read through each rule before using. Ask yourself:
+- Does this match how I want Claude to interact with me?
+- Are the failure patterns relevant to my use case?
+- Do I want bidirectional discipline (Claude flags your reasoning too) or one-directional?
+
+The rules work best when they're specific to how you actually work. Vague or inherited rules you haven't thought through will be ignored in practice — by you and by Claude.
+
+---
+
+## Chunk size limit
+
+Keep individual chunk files under 3KB (~3000 characters of JSON). Larger files cause silent failures with some MCP tools. When a chunk grows beyond that, split it — see naming conventions in `session_loader.json`.
+
+---
+
+## Notes
+
+- This system was designed for use with Claude but the architecture is model-agnostic
+- The KB is only as useful as what you put in it — sparse chunks are fine, vague chunks are not
+- Version your loader file when making structural changes
